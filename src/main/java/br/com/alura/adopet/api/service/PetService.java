@@ -1,20 +1,29 @@
 package br.com.alura.adopet.api.service;
 
+import br.com.alura.adopet.api.dto.CadastrarPetDTO;
 import br.com.alura.adopet.api.dto.RetornoPetDTO;
+import br.com.alura.adopet.api.model.Abrigo;
 import br.com.alura.adopet.api.model.Pet;
 import br.com.alura.adopet.api.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Service
 public class PetService {
 
     @Autowired
-    PetRepository petRepository;
+    private PetRepository petRepository;
 
     public List<RetornoPetDTO> consultarPetsDisponiveis() {
-        List<Pet> pets = petRepository.findByAdotado(false);
-        return pets.stream().map(p -> new RetornoPetDTO(p)).collect(Collectors.toList());
+        return petRepository.findAllByAdotadoFalse()
+                .stream()
+                .map(RetornoPetDTO::new)
+                .toList();
+    }
+
+    public void cadastrarPet(Abrigo abrigo, CadastrarPetDTO dto) {
+        petRepository.save(new Pet(dto, abrigo));
     }
 }
