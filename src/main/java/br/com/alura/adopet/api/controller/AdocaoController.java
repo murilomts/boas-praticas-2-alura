@@ -31,7 +31,7 @@ public class AdocaoController {
 
     @PutMapping("/aprovar")
     @Transactional
-    public ResponseEntity<String> aprovar(@RequestBody @Valid   AprovacaoAdocaoDTO dto) {
+    public ResponseEntity<String> aprovar(@RequestBody @Valid AprovacaoAdocaoDTO dto) {
         this.adocaoService.aprovar(dto);
         return ResponseEntity.ok().build();
     }
