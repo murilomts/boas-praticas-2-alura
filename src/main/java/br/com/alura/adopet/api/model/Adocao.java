@@ -67,12 +67,12 @@ public class Adocao {
         return pet;
     }
 
-    public String getMotivo() {
-        return motivo;
+    public void setPet(Pet pet) {
+        this.pet = pet;
     }
 
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
+    public String getMotivo() {
+        return motivo;
     }
 
     public StatusAdocao getStatus() {
@@ -87,8 +87,8 @@ public class Adocao {
         this.status = StatusAdocao.APROVADO;
     }
 
-    public void marcarComoReprovado(String motivo) {
+    public void marcarComoReprovado(String justificativa) {
         this.status = StatusAdocao.REPROVADO;
-        this.motivo = motivo;
+        this.justificativaStatus = justificativa;
     }
 }
